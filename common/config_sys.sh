@@ -39,6 +39,6 @@ echo -e "Make sure to kill the process from \"ps -ef | grep latency\""
 
 # (4) Set the cpu power state to "performance"
 # Failed to do that, as 4.4 kernal doesn't have this file.
-# echo -e "\n\n\n\n\n\nStep4: Set all cpu to max performace\n====================================\n"
-# echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+echo -e "\n\n\n\n\n\nStep4: Set all cpu to max performace\n====================================\n"
+echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 

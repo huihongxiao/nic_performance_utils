@@ -5,9 +5,9 @@ if [ ! -d "./output" ]; then
 fi
 
 SOCKET_SIZES="4M"
-SEND_SIZES="128 1024 4096 32768"
+SEND_SIZES="128 1024 4096 32768 128K 4M"
 SWITCH="on off"
-PROTOS="UDP"
+PROTOS="TCP UDP"
 
 for STATUS in $SWITCH
   do
