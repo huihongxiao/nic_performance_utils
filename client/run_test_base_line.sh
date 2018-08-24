@@ -4,6 +4,7 @@ if [ ! -d "./output" ]; then
     mkdir output
 fi
 
+REMOTE_HOST=10.23.21.90
 SOCKET_SIZES="4M"
 SEND_SIZES="128 1024 4096 32768 128k 4M"
 SWITCH="on"
@@ -26,7 +27,7 @@ for STATUS in $SWITCH
         echo ------------------------------------
         echo
         echo "Run netperf with $PROTO message size $SEND_SIZE, socket size $SOCKET_SIZE, and tx_tnl_segmentation $STATUS"
-        taskset -c 1 /usr/bin/netperf -l 5 -H 10.17.33.79 -t ${PROTO}_STREAM -i 10,3 -I 99,5 -- -m $SEND_SIZE -s $SOCKET_SIZE -S $SOCKET_SIZE > ./output/${PROTO}_${STATUS}_${SEND_SIZE}_${SOCKET_SIZE}.bw &
+        taskset -c 1 /usr/bin/netperf -l 5 -H ${REMOTE_HOST} -t ${PROTO}_STREAM -i 10,3 -I 99,5 -- -m $SEND_SIZE -s $SOCKET_SIZE -S $SOCKET_SIZE > ./output/${PROTO}_${STATUS}_${SEND_SIZE}_${SOCKET_SIZE}.bw &
         sar -P 0 1 10 > ./output/${PROTO}_${STATUS}_${SEND_SIZE}_${SOCKET_SIZE}.cpu &
 
         echo -n "wait until the test done"
